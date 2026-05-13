@@ -1,0 +1,404 @@
+/* =========================================================
+   MegaGenesis - Product Page Stylesheet
+========================================================= */
+
+:root {
+    --primary-color: #FF5722; 
+    --bg-color: #0c0805;
+    --text-main: #ffffff;
+    --text-muted: #b8b0aa;
+    --card-bg: #1a100a;
+    --nav-bg: rgba(12, 8, 5, 0.95);
+    --input-bg: rgba(255, 255, 255, 0.05);
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+body { 
+    background-color: var(--bg-color); 
+    color: var(--text-main); 
+    overflow-x: hidden; 
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh; 
+}
+
+main { 
+    flex: 1; 
+    padding-top: 85px; /* เว้นระยะจาก Navbar ด้านบน */
+}
+
+/* =========================================
+   1. Navigation Bar & Logo
+========================================= */
+header { 
+    background: var(--nav-bg); 
+    backdrop-filter: blur(10px); 
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    z-index: 1000; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 50px; 
+    border-bottom: 1px solid rgba(255, 87, 34, 0.1); 
+}
+
+.header-left { display: flex; align-items: center; gap: 25px; }
+
+.back-to-main { 
+    color: var(--text-main); 
+    font-size: 18px; 
+    text-decoration: none; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    background: rgba(255, 255, 255, 0.05); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    transition: 0.3s ease; 
+}
+
+.back-to-main:hover { 
+    color: var(--primary-color); 
+    background: rgba(255, 255, 255, 0.1); 
+    border-color: var(--primary-color); 
+    transform: scale(1.05); 
+}
+
+header .logo img { 
+    height: 65px; 
+    max-width: 250px; 
+    width: auto; 
+    object-fit: contain; 
+    transition: 0.3s ease; 
+}
+
+header .logo img:hover { transform: scale(1.02); }
+
+/* Menu */
+.nav-menu { display: flex; list-style: none; gap: 30px; align-items: center; }
+.nav-menu li { position: relative; }
+.nav-menu a { color: var(--text-main); text-decoration: none; font-size: 16px; font-weight: 500; transition: 0.3s; padding: 10px 0; display: inline-block; }
+.nav-menu a:hover { color: var(--primary-color); }
+
+/* Dropdown */
+.dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: var(--card-bg); min-width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 8px; overflow: hidden; border: 1px solid rgba(255, 87, 34, 0.2); }
+.dropdown-content li { width: 100%; list-style: none; }
+.dropdown-content a { padding: 12px 20px; display: block; border-bottom: 1px solid rgba(255,255,255,0.02); font-size: 15px; }
+.dropdown-content a:hover { background: var(--primary-color); color: #fff; padding-left: 25px; }
+.dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.3s ease; }
+
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(10px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+.menu-toggle, .menu-icon { display: none; }
+
+/* =========================================
+   2. Product Content Layout
+========================================= */
+.product-header { 
+    padding: 50px 20px; 
+    text-align: center; 
+    background: linear-gradient(to bottom, rgba(255, 87, 34, 0.1), var(--bg-color)); 
+}
+.product-header h1 { font-size: clamp(35px, 6vw, 50px); font-weight: 900; margin-bottom: 10px; }
+.product-header h1 span { color: var(--primary-color); }
+.product-header p { color: var(--text-muted); font-size: 16px; }
+
+.product-container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 40px 20px 80px; 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 50px; 
+    align-items: center; 
+}
+
+.product-image { 
+    width: 100%; 
+    border-radius: 15px; 
+    overflow: hidden; 
+    border: 1px solid rgba(255, 87, 34, 0.2); 
+    position: relative; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.product-image img { 
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    transition: 0.5s; 
+}
+.product-image:hover img { transform: scale(1.05); }
+
+.product-info h2 { font-size: 30px; margin-bottom: 20px; color: #fff; }
+.product-info p { color: var(--text-muted); line-height: 1.8; margin-bottom: 25px; font-size: 16px; }
+
+.feature-list { list-style: none; margin-bottom: 30px; }
+.feature-list li { margin-bottom: 12px; font-size: 16px; color: var(--text-main); display: flex; align-items: flex-start; }
+.feature-list li::before { content: '✔'; color: var(--primary-color); font-weight: bold; margin-right: 15px; font-size: 18px; margin-top: 2px;}
+
+.order-btn { 
+    display: inline-block; 
+    background: var(--primary-color); 
+    color: #fff; 
+    padding: 15px 35px; 
+    font-size: 18px; 
+    font-weight: bold; 
+    border-radius: 8px; 
+    text-decoration: none; 
+    transition: 0.3s; 
+    text-transform: uppercase; 
+    box-shadow: 0 5px 15px rgba(255, 87, 34, 0.2); 
+}
+.order-btn:hover { 
+    background: #fff; 
+    color: var(--primary-color); 
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 20px rgba(255, 87, 34, 0.4); 
+}
+
+/* =========================================
+   3. Product Gallery
+========================================= */
+.gallery-section { max-width: 1200px; margin: 0 auto; padding: 20px 20px 80px; }
+.gallery-title { text-align: center; font-size: 30px; margin-bottom: 40px; font-weight: bold; position: relative; color: #fff; }
+.gallery-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--primary-color); margin: 15px auto 0; border-radius: 2px; }
+
+.gallery-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 20px; 
+}
+
+.gallery-item { 
+    border-radius: 10px; 
+    overflow: hidden; 
+    border: 1px solid rgba(255, 87, 34, 0.2); 
+    aspect-ratio: 1 / 1; 
+    cursor: pointer; 
+    background: var(--card-bg); 
+}
+
+.gallery-item img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    display: block; 
+    transition: transform 0.4s ease; 
+}
+
+.gallery-item:hover img { transform: scale(1.1); }
+
+/* =========================================
+   4. Footer
+========================================= */
+footer { background: var(--card-bg); padding: 50px 20px 20px; border-top: 1px solid rgba(255, 87, 34, 0.2); margin-top: auto; }
+.footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+.footer-col h4 { font-size: 20px; margin-bottom: 20px; color: var(--text-main); font-weight: bold; text-transform: uppercase; }
+.footer-col h4 span { color: var(--primary-color); }
+.footer-col p { color: var(--text-muted); line-height: 1.6; font-size: 15px; margin-bottom: 15px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col ul a { color: var(--text-muted); text-decoration: none; transition: 0.3s; display: inline-block; }
+.footer-col ul a:hover { color: var(--primary-color); transform: translateX(5px); }
+.social-links a { display: inline-block; margin-right: 10px; color: var(--text-main); background: rgba(255,255,255,0.05); width: 40px; height: 40px; text-align: center; line-height: 40px; border-radius: 5px; transition: 0.3s; text-decoration: none; }
+.social-links a:hover { background: var(--primary-color); color: #fff; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255, 87, 34, 0.3); }
+.footer-bottom { text-align: center; padding-top: 20px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); font-size: 14px; }
+
+/* =========================================
+   5. Responsive (Mobile & Tablet)
+========================================= */
+@media (max-width: 900px) { 
+    .product-container { grid-template-columns: 1fr; gap: 30px;} 
+}
+
+@media (max-width: 768px) {
+    header { padding: 10px 20px; }
+    .menu-icon { display: block; font-size: 28px; cursor: pointer;}
+    .nav-menu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--nav-bg); padding: 20px 0; border-bottom: 1px solid rgba(255, 87, 34, 0.2); }
+    .menu-toggle:checked ~ .nav-menu { display: flex; }
+    .dropdown-content { position: static; box-shadow: none; border: none; background: rgba(255,255,255,0.02); display: none; padding-left: 20px; width: 100%; }
+    .dropdown:hover .dropdown-content { display: block; }
+    header .logo img { height: 45px; }
+    .product-header h1 { font-size: 30px; }
+}
+
+   /* จัด Layout ส่วนหัวให้คลีน */
+        .portfolio-header { padding: 60px 20px 40px; text-align: center; }
+        .portfolio-header h1 { font-size: clamp(35px, 6vw, 45px); margin-bottom: 10px; color: #fff; font-weight: 900;}
+        .portfolio-header h1 span { color: var(--primary-color); }
+        .portfolio-header p { color: var(--text-muted); font-size: 16px; margin-bottom: 20px; }
+
+        /* ปรับกล่องผลงานให้มีพื้นที่ใส่ข้อความด้านล่าง */
+        .gallery-item {
+            aspect-ratio: auto !important; /* ยกเลิกการบังคับเป็นสี่เหลี่ยมจัตุรัส */
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+            text-align: left;
+            transition: 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .gallery-item img {
+            height: 250px !important;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 87, 34, 0.2);
+        }
+        /* ส่วนข้อความรายละเอียดผลงาน */
+        .work-details {
+            padding: 20px;
+        }
+        .work-details h3 {
+            color: var(--primary-color);
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .work-details p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .work-tag {
+            display: inline-block;
+            background: rgba(255, 87, 34, 0.1);
+            color: var(--primary-color);
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+         /* -------------------------------------
+           CSS สำหรับ Popup (Modal)
+        ------------------------------------- */
+        .gallery-item {
+            cursor: pointer; /* ทำให้เมาส์เป็นรูปมือเวลากด */
+        }
+
+        .modal-overlay {
+            display: none; /* ซ่อนไว้ก่อน */
+            position: fixed;
+            z-index: 2000; /* ให้อยู่บนสุด */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); /* พื้นหลังดำโปร่งแสง */
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-container {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 87, 34, 0.3);
+            border-radius: 15px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(-50px);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        .modal-overlay.show .modal-container {
+            transform: translateY(0);
+        }
+
+        .close-btn {
+            color: #fff;
+            background: var(--primary-color);
+            width: 40px;
+            height: 40px;
+            line-height: 38px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 28px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .close-btn:hover {
+            background: #fff;
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-body img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .modal-details {
+            padding: 40px 30px;
+        }
+
+        .modal-details h3 {
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .modal-details p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        /* รองรับหน้าจอคอมพิวเตอร์ (ให้รูปอยู่ซ้าย ข้อความอยู่ขวา) */
+        @media (min-width: 768px) {
+            .modal-body {
+                flex-direction: row;
+            }
+            .modal-body img {
+                width: 50%;
+                height: auto;
+                max-height: 500px;
+                border-top-right-radius: 0;
+                border-bottom-left-radius: 15px;
+            }
+            .modal-details {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }

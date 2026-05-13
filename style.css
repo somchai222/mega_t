@@ -1,0 +1,284 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+/* =========================================
+   💻 สำหรับหน้าจอปกติ (Desktop)
+========================================= */
+.container .slide .item {
+    width: 250px;
+    height: 350px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    border-radius: 20px;
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5);
+    background-position: center;
+    background-size: cover;
+    background-image: var(--thumb-image);
+    transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+}
+
+/* รูปที่ 1 และ 2 คือพื้นหลังหลัก (ต้องเต็มจอเสมอ) */
+.slide .item:nth-child(1),
+.slide .item:nth-child(2) {
+    background-image: var(--bg-image, var(--thumb-image));
+    transition: none;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+    box-shadow: none;
+}
+
+/* ✅ จัดตำแหน่งการซ้อนให้มองเห็นแค่ 3 อันทางขวา (รูปที่ 3, 4, 5) */
+.slide .item:nth-child(3) {
+    left: 55%;
+    z-index: 3;
+    opacity: 1;
+}
+
+.slide .item:nth-child(4) {
+    left: calc(55% + 50px);
+    z-index: 2;
+    opacity: 0.8;
+    transform: translate(0, -50%) scale(0.9);
+}
+
+.slide .item:nth-child(5) {
+    left: calc(55% + 100px);
+    z-index: 1;
+    opacity: 0.6;
+    transform: translate(0, -50%) scale(0.8);
+}
+
+/* ✅ ซ่อนรูปที่เหลือทั้งหมดตั้งแต่รูปที่ 6 เป็นต้นไป */
+.slide .item:nth-child(n + 6) {
+    opacity: 0;
+    display: none;
+}
+
+/* Hover Effect */
+.container .slide .item:nth-child(n + 3):hover {
+    transform: translate(0, -55%) scale(1.05);
+    box-shadow: 0 40px 60px rgba(255, 255, 255, 0.2);
+    z-index: 10;
+    opacity: 1;
+}
+
+/* --- Content ส่วนข้อความ --- */
+.item .content {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    width: 400px;
+    color: #fff;
+    text-shadow: 0 5px 25px rgba(0, 0, 0, 0.9);
+    transform: translate(0, -50%);
+    font-family: 'Segoe UI', sans-serif;
+    display: none;
+    pointer-events: none;
+}
+
+.slide .item:nth-child(2) .content {
+    display: block;
+}
+
+.content .name {
+    font-size: 80px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.content .des {
+    margin: 20px 0;
+    font-size: 18px;
+    animation: animate 1s ease-in-out 0.3s forwards;
+    opacity: 0;
+}
+
+@keyframes animate {
+    from {
+        opacity: 0;
+        transform: translate(0, 100px);
+        filter: blur(33px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0);
+        filter: blur(0);
+    }
+}
+
+/* =========================================
+   🔘 สไตล์สำหรับปุ่มกดไปยังหน้าเว็บ
+========================================= */
+.content .btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 30px;
+    background: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: 0.3s ease;
+    pointer-events: auto;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.6s forwards;
+}
+
+.content .btn:hover {
+    background: #e0e0e0;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.4);
+}
+
+.slide-counter {
+    display: none !important;
+}
+
+.front-img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================
+   📱 ระบบ Responsive ขั้นสูง (Fluid Design)
+========================================= */
+
+/* 💻 สำหรับ Tablet (หน้าจอ 769px ถึง 1024px) */
+@media screen and (max-width: 1024px) {
+    .item .content {
+        width: 90%;
+        top: 40%;
+        left: 5%;
+        transform: translateY(-50%);
+    }
+
+    .content .name { font-size: 50px; }
+
+    .container .slide .item:nth-child(1),
+    .container .slide .item:nth-child(2) {
+        width: 100% !important;
+        height: 100% !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        border-radius: 0 !important;
+    }
+
+    .container .slide .item:nth-child(n + 3) {
+        width: 150px !important;
+        height: 220px !important;
+        top: auto !important;
+        bottom: 5% !important; 
+    }
+
+    .slide .item:nth-child(3) { left: 45% !important; z-index: 3 !important; opacity: 1 !important; transform: scale(1) !important; }
+    .slide .item:nth-child(4) { left: calc(45% + 60px) !important; z-index: 2 !important; opacity: 0.8 !important; transform: scale(0.9) !important; }
+    .slide .item:nth-child(5) { left: calc(45% + 120px) !important; z-index: 1 !important; opacity: 0.6 !important; transform: scale(0.8) !important; }
+}
+
+/* 📱 สำหรับ Mobile ทุกรุ่น (หน้าจอไม่เกิน 768px) */
+@media screen and (max-width: 768px) {
+    /* 1. จัดตำแหน่งข้อความให้อยู่ช่วงกลางจอ ไม่ทับด้านบน */
+    .item .content {
+        width: 100%;
+        top: 37%; /* 👈 เปลี่ยนจาก 45% เป็น 30% หรือน้อยกว่านี้เพื่อดันขึ้นไปอีก */
+        left: 0;
+        padding: 0 35px;
+        transform: translateY(-50%);
+    }
+
+    .content .name { 
+        font-size: 35px; 
+        line-height: 1.2;
+    }
+    
+    .content .des {
+        font-size: 14px;
+        margin: 12px 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .content .btn {
+        padding: 8px 20px;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .container .slide .item:nth-child(1),
+    .container .slide .item:nth-child(2) {
+        width: 100% !important;
+        height: 100% !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        border-radius: 0 !important;
+    }
+
+    /* 2. 🌟 กำหนดขนาดรูปพรีวิวให้พอดีมือถือ (กว้าง 100px สูง 150px) */
+    .container .slide .item:nth-child(n + 3) {
+        width: 100px !important;
+        height: 150px !important;
+        top: auto !important;
+        bottom: 5% !important; /* เกาะขอบล่างจอ */
+        border-radius: 12px !important;
+    }
+
+    /* 3. 🌟 สูตรคำนวณให้รูปทั้ง 3 ใบอยู่ "กึ่งกลางหน้าจอ" เสมอ (Bulletproof) */
+    /* รูปซ้ายสุด */
+    .slide .item:nth-child(3) { 
+        left: calc(50% - 130px) !important; 
+        z-index: 3 !important; 
+        opacity: 1 !important; 
+        transform: scale(1) !important; 
+    }
+    /* รูปตรงกลาง (แกนกลางจอพอดี) */
+    .slide .item:nth-child(4) { 
+        left: calc(50% - 50px) !important; 
+        z-index: 2 !important; 
+        opacity: 0.9 !important; 
+        transform: scale(0.95) !important; 
+    }
+    /* รูปขวาสุด */
+    .slide .item:nth-child(5) { 
+        left: calc(50% + 30px) !important; 
+        z-index: 1 !important; 
+        opacity: 0.8 !important; 
+        transform: scale(0.9) !important; 
+    }
+
+    /* Hover Effect เวลาเอานิ้วจิ้ม */
+    .container .slide .item:nth-child(n + 3):hover {
+        transform: translateY(-10px) scale(1.05) !important;
+    }
+}

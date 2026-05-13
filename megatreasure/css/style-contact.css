@@ -1,0 +1,189 @@
+/* =========================================
+   Root Variables (ชุดสีธีมของเว็บไซต์)
+========================================= */
+:root {
+    --bg-color: #0a1410;       /* สีพื้นหลังหลัก (เขียวเข้มมาก) */
+    --card-bg: #121e18;        /* สีพื้นหลังกล่องเนื้อหา */
+    --input-bg: #1a2b22;       /* สีพื้นหลังช่องกรอกข้อมูล */
+    --primary-color: #10b981;  /* สีเขียวมรกต (สีเด่น) */
+    --text-muted: #a0aec0;     /* สีตัวอักษรสีเทา/รอง */
+}
+
+/* =========================================
+   Page Header
+========================================= */
+.page-header { 
+    /* ดัน Padding ลงมา 120px กันเมนูทับ */
+    padding: 120px 20px 60px; 
+    text-align: center; 
+    /* เพิ่มสีพื้นหลังไล่ระดับให้ดูมีมิติ */
+    background: linear-gradient(to bottom, rgba(16, 185, 129, 0.15), var(--bg-color)); 
+}
+.page-header h1 { 
+    font-size: 45px; 
+    margin-bottom: 10px; 
+    text-transform: uppercase; 
+    font-weight: 300; 
+    letter-spacing: 2px; 
+    color: #ffffff;
+}
+.page-header h1 span { 
+    color: var(--primary-color); 
+    font-weight: bold; 
+    text-shadow: 0 0 15px rgba(16, 185, 129, 0.4); /* เพิ่มแสงเรืองรองให้ข้อความ */
+}
+.page-header p { 
+    color: var(--text-muted); 
+    font-size: 18px; 
+    font-weight: 300; 
+}
+
+/* =========================================
+   Contact Container & Info
+========================================= */
+.contact-container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 40px 20px 80px; 
+    display: grid; 
+    grid-template-columns: 1fr 1.2fr; 
+    gap: 50px; 
+}
+.contact-info h2 { 
+    font-size: 30px; 
+    margin-bottom: 20px; 
+    font-weight: 300; 
+    color: #ffffff;
+}
+.contact-info p { 
+    color: var(--text-muted); 
+    line-height: 1.6; 
+    margin-bottom: 30px; 
+}
+.info-box { 
+    display: flex; 
+    align-items: flex-start; 
+    margin-bottom: 25px; 
+    background: var(--card-bg); 
+    padding: 20px; 
+    border-radius: 10px; 
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+    transition: 0.3s; 
+}
+.info-box:hover { 
+    transform: translateX(10px); 
+    background: rgba(16, 185, 129, 0.05); /* เปลี่ยนสีพื้นหลังนิดๆ ตอน Hover */
+    border-left-color: #34d399; /* เปลี่ยนสีเส้นขอบให้สว่างขึ้น */
+}
+.info-icon { 
+    font-size: 24px; 
+    color: var(--primary-color); 
+    margin-right: 20px; 
+    min-width: 30px; 
+}
+.info-text h4 { 
+    margin-bottom: 5px; 
+    font-size: 18px; 
+    font-weight: 500; 
+    color: #ffffff;
+}
+.info-text p { 
+    margin-bottom: 0; 
+    font-size: 15px; 
+}
+
+/* =========================================
+   Contact Form
+========================================= */
+.contact-form { 
+    background: var(--card-bg); 
+    padding: 40px; 
+    border-radius: 15px; 
+    border: 1px solid rgba(16, 185, 129, 0.2); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+.contact-form h3 { 
+    margin-bottom: 25px; 
+    font-size: 24px; 
+    font-weight: 300; 
+    color: #ffffff;
+}
+.form-group { 
+    margin-bottom: 20px; 
+}
+.form-group label { 
+    display: block; 
+    margin-bottom: 8px; 
+    color: var(--text-muted); 
+    font-size: 14px; 
+}
+.form-control { 
+    width: 100%; 
+    padding: 15px; 
+    background: var(--input-bg); 
+    border: 1px solid rgba(16, 185, 129, 0.3); 
+    border-radius: 8px; 
+    color: #fff; 
+    font-size: 16px; 
+    outline: none; 
+    transition: 0.3s; 
+}
+.form-control:focus { 
+    border-color: var(--primary-color); 
+    background: rgba(16, 185, 129, 0.05); 
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2); /* มีแสงเรืองรองเวลาคลิกพิมพ์ */
+}
+textarea.form-control { 
+    resize: vertical; 
+    min-height: 120px; 
+}
+.submit-btn { 
+    background: var(--primary-color); /* ใส่สีปุ่มให้เห็นชัดเจน */
+    color: #ffffff; 
+    border: none; 
+    padding: 15px 30px; 
+    font-size: 16px; 
+    font-weight: bold;
+    border-radius: 8px; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    width: 100%; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+}
+.submit-btn:hover { 
+    background: #059669; /* สีปุ่มเข้มขึ้นเวลาเอาเมาส์ชี้ */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+}
+
+/* =========================================
+   Map Section
+========================================= */
+.map-section { 
+    width: 100%; 
+    height: 400px; 
+    background: var(--bg-color); 
+    border-top: 2px solid var(--primary-color); /* เปลี่ยนขอบบนเป็นสีเขียว */
+}
+.map-section iframe { 
+    width: 100%; 
+    height: 100%; 
+    border: none; 
+    /* เอาฟิลเตอร์ขาวดำ (grayscale/invert) ออก เพื่อให้แผนที่มีสีสัน */
+    /* แต่ยังคงลดความสว่างลงเล็กน้อย เพื่อไม่ให้แยงตาและเข้ากับธีมมืด */
+    filter: brightness(90%) contrast(110%); 
+}
+
+/* =========================================
+   Responsive 
+========================================= */
+@media (max-width: 900px) { 
+    .contact-container { 
+        grid-template-columns: 1fr; 
+    } 
+    .contact-form { 
+        padding: 30px 20px; 
+    } 
+}

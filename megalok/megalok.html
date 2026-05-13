@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeGaLok - Industrial Solutions</title>
+    <style>
+        :root {
+            --primary-color: #E60000;
+            --bg-color: #0a0a0a;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --card-bg: #1a1a1a;
+            --nav-bg: rgba(10, 10, 10, 0.95);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+
+        /* =========================================
+           Navigation Bar
+        ========================================= */
+        header { background: var(--nav-bg); backdrop-filter: blur(10px); position: fixed; top: 0; width: 100%; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        header .logo { font-size: 24px; font-weight: bold; letter-spacing: 2px; color: var(--text-main); }
+        header .logo span { color: var(--primary-color); }
+
+        .nav-menu { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-menu li { position: relative; }
+        .nav-menu a { color: var(--text-main); text-decoration: none; font-size: 16px; font-weight: 500; transition: 0.3s; padding: 10px 0; display: inline-block; }
+        .nav-menu a:hover { color: var(--primary-color); }
+
+        .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: var(--card-bg); min-width: 200px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+        .dropdown-content li { width: 100%; list-style: none; }
+        .dropdown-content a { padding: 12px 20px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 15px; }
+        .dropdown-content a:hover { background: var(--primary-color); color: #fff; padding-left: 25px; }
+        .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .menu-toggle { display: none; }
+        .menu-icon { display: none; font-size: 28px; cursor: pointer; color: var(--text-main); }
+
+        @media (max-width: 768px) {
+            header { padding: 15px 20px; }
+            .menu-icon { display: block; }
+            .nav-menu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--nav-bg); padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .menu-toggle:checked ~ .nav-menu { display: flex; }
+            .dropdown-content { position: static; box-shadow: none; border: none; background: rgba(255,255,255,0.02); display: none; padding-left: 20px; width: 100%; }
+            .dropdown:hover .dropdown-content { display: block; }
+        }
+
+        /* =========================================
+           Hero & Content
+        ========================================= */
+        main { flex: 1; }
+        .hero { height: 60vh; margin-top: 60px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(to bottom, rgba(0,0,0,0.7), var(--bg-color)), url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070') center/cover; padding: 0 20px; }
+        .hero h1 { font-size: clamp(40px, 8vw, 80px); text-transform: uppercase; margin-bottom: 15px; }
+        .hero h1 span { color: var(--primary-color); }
+        .hero p { font-size: clamp(16px, 4vw, 20px); color: var(--text-muted); max-width: 600px; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
+        .section-title { text-align: center; font-size: 30px; margin-bottom: 40px; position: relative; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--primary-color); margin: 10px auto 0; border-radius: 2px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: var(--card-bg); border-radius: 15px; padding: 30px; transition: transform 0.3s; border-bottom: 4px solid transparent; }
+        .card:hover { transform: translateY(-10px); border-bottom-color: var(--primary-color); }
+        .card h3 { margin-bottom: 15px; font-size: 22px; color: var(--primary-color); }
+        .card p { color: var(--text-muted); line-height: 1.6; }
+
+        /* =========================================
+           Footer
+        ========================================= */
+        footer { background: var(--card-bg); padding: 50px 20px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: auto; }
+        .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .footer-col h4 { font-size: 20px; margin-bottom: 20px; color: var(--text-main); font-weight: bold; }
+        .footer-col h4 span { color: var(--primary-color); }
+        .footer-col p { color: var(--text-muted); line-height: 1.6; font-size: 15px; margin-bottom: 15px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul a { color: var(--text-muted); text-decoration: none; transition: 0.3s; display: inline-block; }
+        .footer-col ul a:hover { color: var(--primary-color); transform: translateX(5px); }
+        .social-links a { display: inline-block; margin-right: 10px; color: var(--text-main); background: rgba(255,255,255,0.05); width: 40px; height: 40px; text-align: center; line-height: 40px; border-radius: 50%; transition: 0.3s; text-decoration: none; }
+        .social-links a:hover { background: var(--primary-color); color: #fff; transform: translateY(-3px); }
+        .footer-bottom { text-align: center; padding-top: 20px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); font-size: 14px; }
+        
+        /* =========================================
+           Left Icon (Back to Main Index)
+        ========================================= */
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* ระยะห่างระหว่างไอคอนกับโลโก้ */
+        }
+        
+        .back-to-main {
+            color: var(--text-main);
+            font-size: 18px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s ease;
+        }
+
+        .back-to-main:hover {
+            color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+   <header>
+        <div class="header-left">
+            <a href="../index.html" class="back-to-main" title="กลับหน้าหลัก (Main Index)">🏠</a>
+            <a href="megalok.html" class="logo">MEGA<span>LOK</span></a>
+        </div>
+        
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="menu-icon">☰</label>
+
+        <ul class="nav-menu">
+            <li><a href="megalok.html">Home</a></li>
+            <li><a href="#">About me</a></li>
+            <li class="dropdown">
+                <a href="#">Product ▾</a>
+                <ul class="dropdown-content">
+                    <li><a href="#">1. สายรัดสแตนเลส</a></li>
+                    <li><a href="#">2. เคเบิ้ลไทร์ไนลอน</a></li>
+                    <li><a href="#">3. อุปกรณ์เครื่องมือ</a></li>
+                    <li><a href="#">4. สายรัดพลาสติก</a></li>
+                    <li><a href="#">5. อุปกรณ์เสริมอื่นๆ</a></li>
+                </ul>
+            </li>
+            <li><a href="contact-megalok.html">Contact</a></li>
+        </ul>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Welcome to <span>MEGALOK</span></h1>
+            <p>แข็งแกร่ง ทนทาน มั่นใจได้ทุกการยึดเหนี่ยว อุปกรณ์สายรัดอุตสาหกรรมคุณภาพสูง</p>
+        </section>
+
+        <div class="container">
+            <h2 class="section-title">ผลิตภัณฑ์ของเรา</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Stainless Steel Ties</h3>
+                    <p>สายรัดสแตนเลสคุณภาพสูง ทนทานต่อการกัดกร่อนและอุณหภูมิที่สูงลิ่ว เหมาะกับงานอุตสาหกรรมหนัก</p>
+                </div>
+                <div class="card">
+                    <h3>Nylon Cable Ties</h3>
+                    <p>เคเบิ้ลไทร์ไนลอน เหนียว ทนทาน ล็อกแน่นหนา มีหลายขนาดให้เลือกตามความต้องการของงาน</p>
+                </div>
+                <div class="card">
+                    <h3>Industrial Tools</h3>
+                    <p>อุปกรณ์เครื่องมือเสริมสำหรับการดึงและตัดสายรัด ช่วยให้การทำงานรวดเร็วและปลอดภัยยิ่งขึ้น</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>MEGA<span>LOK</span></h4>
+                <p>ผู้จัดจำหน่ายอุปกรณ์สายรัดอุตสาหกรรมคุณภาพสูง ตอบโจทย์ทุกความต้องการด้วยมาตรฐานระดับสากล ทนทานและปลอดภัย</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">All Products</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>📍 123 Industrial Estate, Bangkok, Thailand 10xxx</p>
+                <p>📞 +66 2 123 4567</p>
+                <p>✉️ info@megalok.com</p>
+                <div class="social-links">
+                    <a href="#">FB</a>
+                    <a href="#">IG</a>
+                    <a href="#">IN</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MeGaLok Industrial. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
